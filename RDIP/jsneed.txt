@@ -1,0 +1,5 @@
+Create dropdown function menu for language hindi and english,
+Create buttons with jumbled words,
+Function to recognized the grammatically correct sentense,
+Buttons with function which reform the same set of buttons with jumbled word,
+Button with function which shows the correct answer.
