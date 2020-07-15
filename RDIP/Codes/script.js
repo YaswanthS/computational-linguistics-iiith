@@ -28,14 +28,9 @@ var sentence = '{"English":['+
     '{"a":"एक बड़ी सी किताब वहाँ है", "b":"एक बड़ी सी किताब है वहाँ", "c":"बड़ी सी एक किताब वहाँ है", "d":"बड़ी सी एक किताब है वहाँ", "e":"वहाँ है एक बड़ी सी किताब",'+
         '"f":"वहाँ है बड़ी सी एक किताब", "g":"है वहाँ एक बड़ी सी किताब", "h":"है वहाँ बड़ी सी एक किताब"}]}';   
 
-/*
-obj = JSON.parse(text);
-document.getElementById("demo").innerHTML =
-obj.English[0].a + " " + obj.Hindi[0].a;
-*/
 
 
-/* Global Variables */
+
 var language="";
 var current_sentence = "";
 var formed_sentence = "";
@@ -45,7 +40,6 @@ var question = 0;
 var sentences = JSON.parse(sentence);
 
 
-/* Displaying the first message */
 function exp_top(){
     clear();
     language = document.getElementById('language').options[document.getElementById('language').selectedIndex].text;
@@ -62,29 +56,27 @@ function exp_top(){
     }
 }
 
-/* Selection of a random sentence */
 function sentence_selection(language){
     document.getElementById('experiment-sentence').innerHTML = "";
     if(language == "English"){
-        question = Math.floor(Math.random() * 10);                        // Randomly selecting an english sentence.
+        question = Math.floor(Math.random() * 10);                   
         current_sentence = sentences.English[question].a;
         sentence_to_buttons( sentences.English[question].a );
     }
     else if(language == "Hindi"){
-        question = Math.floor(Math.random() * 7);                         // Randomly selecting an hindi sentence.
+        question = Math.floor(Math.random() * 7);                    
         current_sentence = sentences.Hindi[question].a;
         sentence_to_buttons( sentences.Hindi[question].a );
     }
 }
 
-/* Shuffling the words in the sentence */
+
 function sentence_to_buttons( str ){
     var arr = str.split(" ");
     word_array = shuffle(arr);
     adding_buttons(word_array);
 }
 
-/*Converting the shuffled words into sentences */
 function adding_buttons(arr){
     var j = "1";
     for(i=0;i<arr.length;i++){
@@ -99,7 +91,6 @@ function adding_buttons(arr){
     word_count = 0;
 }
 
-/* Shuffling words */
 function shuffle(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
@@ -111,7 +102,6 @@ function shuffle(a) {
     return a;
 }
 
-/* Displaying second message */
 function second_message(id1){
     if(id1 == "experiment-sentence")
         return ;
@@ -120,7 +110,6 @@ function second_message(id1){
     document.getElementById("reform-button").style.display = "initial";
 }
 
-/* Displaying the formed sentence */
 function a(id1){
     if(id1 == "experiment-sentence")
         return ;
@@ -144,10 +133,9 @@ function a(id1){
 function reform(){
     clear();
     document.getElementById('experiment-sentence').innerHTML = "";
-    adding_buttons(word_array);                                             // Jumbling back words to the previous order.
+    adding_buttons(word_array);                                       
 }
 
-/* Validating the formed sentence */ 
 function check_sentence(){
     var status = false;
     if(language == "English"){
@@ -163,7 +151,7 @@ function check_sentence(){
         }
         else{
             document.getElementById('wrong-answer').style.display = "initial";
-            document.getElementById('correct-sentence').style.display = "initial";         // Invoked when 'check the correctness of the sentence is clicked.
+            document.getElementById('correct-sentence').style.display = "initial";     
         }
         return;
     }
@@ -180,21 +168,19 @@ function check_sentence(){
         }
         else{
             document.getElementById('wrong-answer').style.display = "initial";
-            document.getElementById('correct-sentence').style.display = "initial";          // Invoked when 'check the correctness of the sentence is clicked.
+            document.getElementById('correct-sentence').style.display = "initial"; 
         }
         return true;
     }
     
     
 }
-
-/*Displaying correct sentences */
 function get_sentences(){
     document.getElementById('correct-sentences').style.display = "initial";
 
     var name = document.getElementById('correct-sentence').innerHTML;
 
-    if(name == "Get the correct sentence" || name == "Get answers"){                            //Changing the name of the button accordingly.
+    if(name == "Get the correct sentence" || name == "Get answers"){  
         document.getElementById('correct-sentence').innerHTML = "Hide the correct sentence";
 
         if(language == "English"){
@@ -221,7 +207,6 @@ function get_sentences(){
         document.getElementById('correct-sentences').innerHTML = "";
     }
 }
-
 function clear(){
     document.getElementById("second-msg").innerHTML = "";
     document.getElementById("second-line").innerHTML = "";
@@ -235,7 +220,6 @@ function clear(){
     document.getElementById('correct-sentence').innerHTML = "Get the correct sentence";
     document.getElementById('correct-sentences').innerHTML = "";
 }
-
 function set_display(val){
     document.getElementById("experiment-top").style.display = val;
     document.getElementById("experiment-line").style.display = val;
